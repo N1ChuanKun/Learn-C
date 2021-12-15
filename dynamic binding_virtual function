@@ -1,0 +1,48 @@
+#include<iostream>
+using namespace std;
+
+class Shape {
+	Shape* next;
+public:
+	Shape() { next = NULL; }
+	Shape* add(Shape*p){
+		this->next = p;
+		return p;
+	}
+	virtual ~Shape(){}
+	virtual void draw() { cout << "--Shape--" << endl; }
+	void paint() { draw(); }
+	Shape* getNext() { return next; }
+};
+
+class Circle:public Shape {
+protected:
+	void draw() { cout << "Circle" << endl; }
+};
+
+class Rect :public Shape {
+protected:
+	void draw() { cout << "Rect" << endl; }
+};
+
+int main() {
+	Shape* pStart = NULL;
+	Shape* pLast;
+	pStart = new Circle;
+	pLast = pStart;
+
+	pLast = pLast->add(new Rect());
+
+	Shape* p = pStart;
+	while (p != NULL) {
+		p->draw();
+		p->getNext();
+	}
+
+	p = pStart;
+	while (p!= NULL) {
+		Shape* q = p->getNext();
+		delete[]p;
+		p = q;
+	}
+}
