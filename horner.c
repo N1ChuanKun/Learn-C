@@ -17,6 +17,7 @@ long int horner(int arr[], int n, int x0) {
 		return arr[0];
 	return arr[0] + horner(arr + 1, n - 1, x0) * x0;
 }
+*/
 
 int main() {
 	long int result;
