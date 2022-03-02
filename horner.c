@@ -10,6 +10,14 @@ long int horner(int arr[], int n, int x0) {
 	return result;
 }
 
+/*递归法
+long int horner(int arr[], int n, int x0) {
+	int result = 0;
+	if (n <= 1)
+		return arr[0];
+	return arr[0] + horner(arr + 1, n - 1, x0) * x0;
+}
+
 int main() {
 	long int result;
 	int a[4] = { 5,4,2,1 };
